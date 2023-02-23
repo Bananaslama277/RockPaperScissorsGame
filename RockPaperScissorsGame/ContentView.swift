@@ -1,6 +1,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var rock = 0
+    @State var paper = 1
+    @State var scissors = 2
+    @State var playerChoice = 0
+    var playerChoiceImage = ["🪨","📄","✂️"]
+    
     var body: some View {
         ZStack{
             Color.blue.ignoresSafeArea()
@@ -27,7 +34,9 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
-                        print("Button Clicked")
+                        print("Rock selected")
+                        playerChoice = rock
+                        print(playerChoice)
                     } label: {
                         
                         Text("🪨")
@@ -37,7 +46,9 @@ struct ContentView: View {
                     Spacer()
                     
                     Button {
-                        print("Button Clicked")
+                        print("Paper selected")
+                        playerChoice = paper
+                        print(playerChoice)
                     } label: {
                         Text("📄")
                             .font(.system(size: 75))
@@ -46,7 +57,9 @@ struct ContentView: View {
                     Spacer()
 
                     Button {
-                        print("Button Clicked")
+                        print("Scissors selected")
+                        playerChoice = scissors
+                        print(playerChoice)
                     } label: {
                         Text("✂️")
                             .font(.system(size: 75))
@@ -61,7 +74,7 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack{
-                        Text("🪨")
+                        Text(playerChoiceImage)
                             .font(.system(size: 60))
                             .padding(.bottom, 10.0)
 
