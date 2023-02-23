@@ -6,7 +6,9 @@ struct ContentView: View {
     @State var paper = 1
     @State var scissors = 2
     @State var playerChoice = 0
-    var playerChoiceImage = ["🪨","📄","✂️"]
+    
+    var ChoiceImage = ["🪨","📄","✂️"]
+    var cupChoice = [0,1,2]
     
     var body: some View {
         ZStack{
@@ -37,6 +39,7 @@ struct ContentView: View {
                         print("Rock selected")
                         playerChoice = rock
                         print(playerChoice)
+                        
                     } label: {
                         
                         Text("🪨")
@@ -74,7 +77,7 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack{
-                        Text(playerChoiceImage)
+                        Text(ChoiceImage[playerChoice])
                             .font(.system(size: 60))
                             .padding(.bottom, 10.0)
 
