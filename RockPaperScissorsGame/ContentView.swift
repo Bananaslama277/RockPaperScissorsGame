@@ -6,9 +6,47 @@ struct ContentView: View {
     @State var paper = 1
     @State var scissors = 2
     @State var playerChoice = 0
+    @State var playerScore = 0
+    @State var cpuScore = 0
     
-    var ChoiceImage = ["🪨","📄","✂️"]
-    var cupChoice = [0,1,2]
+    @State var ChoiceImage = ["🪨","📄","✂️"]
+    @State var cpuChoiceArray = [0,1,2]
+    @State var cpuChoice = 0
+    
+     func checkChoice() {
+        cpuChoiceArray.shuffle()
+         cpuChoice = cpuChoiceArray[0]
+         
+        if (Int(playerChoice) == Int(cpuChoice)) {
+            playerScore += 0
+            cpuScore += 0
+            print("tie")
+            
+        } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 1){
+            cpuScore += 1
+            print("lose")
+            
+            } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 2) {
+                playerScore += 1
+                print("win")
+                
+                } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 0) {
+                    playerScore += 1
+                    print("win")
+
+                    } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 2) {
+                        cpuScore += 1
+                        print("lose")
+                        
+                        } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 0) {
+                            cpuScore += 1
+                            print("lose")
+                            
+                            } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 1) {
+                                playerScore += 1
+                                print("win")
+                                }
+    }
     
     var body: some View {
         ZStack{
@@ -39,7 +77,7 @@ struct ContentView: View {
                         print("Rock selected")
                         playerChoice = rock
                         print(playerChoice)
-                        
+                        checkChoice()
                     } label: {
                         
                         Text("🪨")
@@ -52,6 +90,7 @@ struct ContentView: View {
                         print("Paper selected")
                         playerChoice = paper
                         print(playerChoice)
+                        checkChoice()
                     } label: {
                         Text("📄")
                             .font(.system(size: 75))
@@ -63,6 +102,7 @@ struct ContentView: View {
                         print("Scissors selected")
                         playerChoice = scissors
                         print(playerChoice)
+                        checkChoice()
                     } label: {
                         Text("✂️")
                             .font(.system(size: 75))
@@ -86,7 +126,7 @@ struct ContentView: View {
                             .foregroundColor(Color.white)
                             .padding(.bottom, 10.0)
                         
-                        Text("0")
+                        Text(String(playerScore))
                             .font(.title)
                             .foregroundColor(Color.white)
 
@@ -104,7 +144,7 @@ struct ContentView: View {
                             .foregroundColor(Color.white)
                             .padding(.bottom, 10.0)
 
-                        Text("0")
+                        Text(String(cpuScore))
                             .font(.title)
                             .foregroundColor(Color.white)
                     }
@@ -115,7 +155,8 @@ struct ContentView: View {
                 Spacer()
                 
                 Button {
-                    print("Button Clicked")
+                    playerScore = 0
+                    cpuScore = 0
                 } label: {
                     Text("RESTART GAME")
                         .font(.largeTitle)
