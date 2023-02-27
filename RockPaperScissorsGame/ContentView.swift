@@ -76,7 +76,6 @@ struct ContentView: View {
                     Button {
                         print("Rock selected")
                         playerChoice = rock
-                        print(playerChoice)
                         checkChoice()
                     } label: {
                         
@@ -89,7 +88,6 @@ struct ContentView: View {
                     Button {
                         print("Paper selected")
                         playerChoice = paper
-                        print(playerChoice)
                         checkChoice()
                     } label: {
                         Text("📄")
@@ -101,7 +99,6 @@ struct ContentView: View {
                     Button {
                         print("Scissors selected")
                         playerChoice = scissors
-                        print(playerChoice)
                         checkChoice()
                     } label: {
                         Text("✂️")
