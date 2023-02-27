@@ -9,7 +9,7 @@ struct ContentView: View {
     @State var playerScore = 0
     @State var cpuScore = 0
     
-    @State var ChoiceImage = ["🪨","📄","✂️"]
+    @State var choiceImage = ["🪨","📄","✂️"]
     @State var cpuChoiceArray = [0,1,2]
     @State var cpuChoice = 0
     
@@ -117,7 +117,7 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack{
-                        Text(ChoiceImage[playerChoice])
+                        Text(choiceImage[playerChoice])
                             .font(.system(size: 60))
                             .padding(.bottom, 10.0)
 
@@ -135,7 +135,7 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack{
-                        Text("🪨")
+                        Text(choiceImage[cpuChoice])
                             .font(.system(size: 60))
                             .padding(.bottom, 10.0)
 
