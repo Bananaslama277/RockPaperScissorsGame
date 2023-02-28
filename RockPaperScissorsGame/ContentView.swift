@@ -19,17 +19,12 @@ struct ContentView: View {
     
     
     func checkChoice() {
-        if (playerScore >= 3 || cpuScore >= 3) {
-            isGamePlaying -= 1
-            if (playerScore >= 3) {
-                winLoseState = 5
-            } else if (cpuScore >= 3){
-                winLoseState = 4
-            }
-        }
+  
+        
         cpuChoiceArray.shuffle()
         cpuChoice = cpuChoiceArray[0]
-        if (isGamePlaying == 1){
+        
+        if (isGamePlaying == 1) {
             if (Int(playerChoice) == Int(cpuChoice)) {
                 playerScore += 0
                 cpuScore += 0
@@ -66,9 +61,16 @@ struct ContentView: View {
                 print("win")
                 winLoseState = 1
             }
+            if (playerScore == 3 || cpuScore == 3) {
+                isGamePlaying = 0
+                if (playerScore == 3) {
+                    winLoseState = 5
+                } else if (cpuScore == 3){
+                    winLoseState = 4
+                }
+            }
         } else if (isGamePlaying == 0){
             print("game over")
-            
         }
     }
     
