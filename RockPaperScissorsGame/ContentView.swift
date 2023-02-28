@@ -9,7 +9,8 @@ struct ContentView: View {
     @State var playerScore = 0
     @State var cpuScore = 0
     
-    @State var winLoseText = ["Select Rock, Paper, or Scissors to start the game","Win!","Lose!","Tie!","CPU Won!","Player Won!"]
+    @State var winLoseText = ["Select Rock, Paper, or Scissors to start the game",
+                              "Win!","Lose!","Tie!","CPU Won!","Player Won!"]
     
     @State var winLoseState = 0
     @State var choiceImage = ["🪨","📄","✂️"]
@@ -57,6 +58,7 @@ struct ContentView: View {
                 print("win")
                 winLoseState = 1
             }
+            
             if (playerScore == 3 || cpuScore == 3) {
                 isGamePlaying = 0
                 if (playerScore == 3) {
@@ -65,6 +67,7 @@ struct ContentView: View {
                     winLoseState = 4
                 }
             }
+            
         } else if (isGamePlaying == 0){
             print("game over")
         }
