@@ -13,17 +13,13 @@ struct ContentView: View {
     
     @State var winLoseState = 0
     @State var choiceImage = ["🪨","📄","✂️"]
-    @State var cpuChoiceArray = [0,1,2]
     @State var cpuChoice = 0
     @State var isGamePlaying = 1
     
     
     func checkChoice() {
   
-        
-        cpuChoiceArray.shuffle()
-        cpuChoice = cpuChoiceArray[0]
-        
+        cpuChoice = Int.random(in: 0...2)
         if (isGamePlaying == 1) {
             if (Int(playerChoice) == Int(cpuChoice)) {
                 playerScore += 0
