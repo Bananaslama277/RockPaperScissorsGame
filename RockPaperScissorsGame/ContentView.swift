@@ -9,53 +9,67 @@ struct ContentView: View {
     @State var playerScore = 0
     @State var cpuScore = 0
     
-    @State var winLoseText = ["Select Rock, Paper, or Scissors to start the game","Win!","Lose!","Tie!"]
+    @State var winLoseText = ["Select Rock, Paper, or Scissors to start the game","Win!","Lose!","Tie!","CPU Won!","Player Won!"]
     
     @State var winLoseState = 0
     @State var choiceImage = ["🪨","📄","✂️"]
     @State var cpuChoiceArray = [0,1,2]
     @State var cpuChoice = 0
+    @State var isGamePlaying = 1
     
-     func checkChoice() {
+    
+    func checkChoice() {
+        if (playerScore >= 3 || cpuScore >= 3) {
+            isGamePlaying -= 1
+            if (playerScore >= 3) {
+                winLoseState = 5
+            } else if (cpuScore >= 3){
+                winLoseState = 4
+            }
+        }
         cpuChoiceArray.shuffle()
-         cpuChoice = cpuChoiceArray[0]
-         
-        if (Int(playerChoice) == Int(cpuChoice)) {
-            playerScore += 0
-            cpuScore += 0
-            print("tie")
-            winLoseState = 3
-            
-        } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 1){
-            cpuScore += 1
-            print("lose")
-            winLoseState = 2
-
+        cpuChoice = cpuChoiceArray[0]
+        if (isGamePlaying == 1){
+            if (Int(playerChoice) == Int(cpuChoice)) {
+                playerScore += 0
+                cpuScore += 0
+                print("tie")
+                winLoseState = 3
+                
+            } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 1){
+                cpuScore += 1
+                print("lose")
+                winLoseState = 2
+                
             } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 2) {
                 playerScore += 1
                 print("win")
                 winLoseState = 1
-
-                } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 0) {
-                    playerScore += 1
-                    print("win")
-                    winLoseState = 1
-
-                    } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 2) {
-                        cpuScore += 1
-                        print("lose")
-                        winLoseState = 2
-
-                        } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 0) {
-                            cpuScore += 1
-                            print("lose")
-                            winLoseState = 2
-
-                            } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 1) {
-                                playerScore += 1
-                                print("win")
-                                winLoseState = 1
-                                }
+                
+            } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 0) {
+                playerScore += 1
+                print("win")
+                winLoseState = 1
+                
+            } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 2) {
+                cpuScore += 1
+                print("lose")
+                winLoseState = 2
+                
+            } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 0) {
+                cpuScore += 1
+                print("lose")
+                winLoseState = 2
+                
+            } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 1) {
+                playerScore += 1
+                print("win")
+                winLoseState = 1
+            }
+        } else if (isGamePlaying == 0){
+            print("game over")
+            
+        }
     }
     
     var body: some View {
@@ -165,6 +179,8 @@ struct ContentView: View {
                 Button {
                     playerScore = 0
                     cpuScore = 0
+                    isGamePlaying = 1
+                    winLoseState = 0
                 } label: {
                     Text("RESTART GAME")
                         .font(.largeTitle)
