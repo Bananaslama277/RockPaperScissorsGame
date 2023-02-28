@@ -9,6 +9,9 @@ struct ContentView: View {
     @State var playerScore = 0
     @State var cpuScore = 0
     
+    @State var winLoseText = ["Select Rock, Paper, or Scissors to start the game","Win!","Lose!","Tie!"]
+    
+    @State var winLoseState = 0
     @State var choiceImage = ["🪨","📄","✂️"]
     @State var cpuChoiceArray = [0,1,2]
     @State var cpuChoice = 0
@@ -21,30 +24,37 @@ struct ContentView: View {
             playerScore += 0
             cpuScore += 0
             print("tie")
+            winLoseState = 3
             
         } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 1){
             cpuScore += 1
             print("lose")
-            
+            winLoseState = 2
+
             } else if (Int(playerChoice) == 0 && Int(cpuChoice) == 2) {
                 playerScore += 1
                 print("win")
-                
+                winLoseState = 1
+
                 } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 0) {
                     playerScore += 1
                     print("win")
+                    winLoseState = 1
 
                     } else if (Int(playerChoice) == 1 && Int(cpuChoice) == 2) {
                         cpuScore += 1
                         print("lose")
-                        
+                        winLoseState = 2
+
                         } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 0) {
                             cpuScore += 1
                             print("lose")
-                            
+                            winLoseState = 2
+
                             } else if (Int(playerChoice) == 2 && Int(cpuChoice) == 1) {
                                 playerScore += 1
                                 print("win")
+                                winLoseState = 1
                                 }
     }
     
@@ -63,7 +73,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                Text("Select Rock, Paper, or Scissors to start the game")
+                Text(winLoseText[winLoseState])
                     .font(.title)
                     .foregroundColor(Color.white)
                     .multilineTextAlignment(.center)
@@ -132,6 +142,7 @@ struct ContentView: View {
                     Spacer()
                     
                     VStack{
+                        
                         Text(choiceImage[cpuChoice])
                             .font(.system(size: 60))
                             .padding(.bottom, 10.0)
